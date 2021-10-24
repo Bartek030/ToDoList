@@ -14,6 +14,7 @@ import java.io.IOException;
 public class ServletTest extends HttpServlet {
 
     private static final String PARAM_NAME = "name";
+    private static final String LANG_PARAM = "lang";
     private final Logger logger = LoggerFactory.getLogger(ServletTest.class);
 
     private ServiceTest serviceTest;
@@ -33,6 +34,8 @@ public class ServletTest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("Got request with parameters: " + req.getParameterMap());
-        resp.getWriter().write(serviceTest.prepareGreeting(req.getParameter(PARAM_NAME)));
+        var name = req.getParameter(PARAM_NAME);
+        var lang = req.getParameter(LANG_PARAM);
+        resp.getWriter().write(serviceTest.prepareGreeting(name, lang));
     }
 }
