@@ -13,11 +13,26 @@ import java.io.IOException;
 @WebServlet(name = "Hello", urlPatterns = {"/api/*"})
 public class ServletTest extends HttpServlet {
 
+    private static final String PARAM_NAME = "name";
     private final Logger logger = LoggerFactory.getLogger(ServletTest.class);
+
+    private ServiceTest serviceTest;
+
+    /**
+     * Servlet container needs it.
+     */
+    @SuppressWarnings("unused")
+    public ServletTest() {
+        this(new ServiceTest());
+    }
+
+    ServletTest(ServiceTest serviceTest) {
+        this.serviceTest = serviceTest;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.info("Request got");
-        resp.getWriter().write("Hello world!");
+        logger.info("Got request with parameters: " + req.getParameterMap());
+        resp.getWriter().write(serviceTest.prepareGreeting(req.getParameter(PARAM_NAME)));
     }
 }
