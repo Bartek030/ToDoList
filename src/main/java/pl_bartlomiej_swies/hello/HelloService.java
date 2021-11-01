@@ -1,23 +1,25 @@
-package pl_bartlomiej_swies;
+package pl_bartlomiej_swies.hello;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl_bartlomiej_swies.lang.Lang;
+import pl_bartlomiej_swies.lang.LangRepository;
 
 import java.util.Optional;
 
-class ServiceTest {
+class HelloService {
 
     static final String FALLBACK_NAME = "world";
     static final Lang FALLBACK_LANG = new Lang(1, "Hello", "en");
 
     private LangRepository repository;
-    private final Logger logger = LoggerFactory.getLogger(ServiceTest.class);
+    private final Logger logger = LoggerFactory.getLogger(HelloService.class);
 
-    ServiceTest() {
+    HelloService() {
         this(new LangRepository());
     }
 
-    ServiceTest(LangRepository repository) {
+    HelloService(LangRepository repository) {
         this.repository = repository;
     }
 

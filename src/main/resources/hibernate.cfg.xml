@@ -35,7 +35,8 @@
         <property name="hbm2ddl.auto">validate</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="pl_bartlomiej_swies.Lang"/>
+        <mapping class="pl_bartlomiej_swies.lang.Lang"/>
+        <mapping class="pl_bartlomiej_swies.todo.Todo"/>
 
     </session-factory>
 
